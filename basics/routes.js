@@ -15,14 +15,16 @@ const requestHandler = (req, res) => {
                 <body>
                     <form action="/message" method="POST">
                         <input type="text" name="message" />
-                        <button type="submit">Append Text</button>
+                        <button type="submit">Add Text</button>
                     </form>
                 </body>
             </html>
         `);
     
         return res.end();
-    } else if (url === '/message' && method === 'POST') {
+    }
+    
+    if (url === '/message' && method === 'POST') {
         let body = [];
         let existingContent = fs.readFileSync('message.txt', 'utf-8');
     
