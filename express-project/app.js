@@ -5,6 +5,7 @@ const path = require('path');
 // Third party packages
 const express = require('express');
 const parser = require('body-parser');
+const errorController = require('./controllers/error');
 
 const app = express();
 
@@ -29,9 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', adminRoutes.router);
 app.use(shopRoutes);
 
-app.use((req, res, next) => {
-    res.status(404).render('404', {docTitle: 'Page not found', path: '404'});
-});
+app.use(errorController.get404);
 
 // Express shorthand syntax to create server and listen on port
 app.listen(3000);
